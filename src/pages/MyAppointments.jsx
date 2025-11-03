@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MyAppointments() {
+function MyAppointments() {
   return (
-    <div>
-        
-    </div>
+    <div>MyAppointments</div>
   )
 }
+
+export default MyAppointments

@@ -296,4 +296,20 @@ export const doctors = [
             line2: 'Circle, Ring Road, London'
         }
     },
+
+    {
+        _id: 'doc16',
+        name: 'Dr. William Brown',
+        image: doc1, // or create a new image import
+        speciality: 'Gastroenterologist',
+        degree: 'MBBS',
+        experience: '5 Years',
+        about: 'Specialist in digestive and liver disorders. Focused on advanced endoscopic diagnostics and care.',
+        fees: 70,
+        address: {
+          line1: '67th Cross, Richmond',
+          line2: 'Circle, Ring Road, London'
+        }
+      },
+      
 ]
