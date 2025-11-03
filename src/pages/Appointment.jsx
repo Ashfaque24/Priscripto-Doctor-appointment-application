@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useEffectEvent, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
+import RelatedDoctors from '../components/RelatedDoctors'
 
 const Appointment = () => {
   const { docId } = useParams()
@@ -124,22 +125,33 @@ useEffect(()=>{
       {/* -----------------Booking Slotes------------------------------------------ */}
       <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700'>
         <p>Booking Slots</p>
-        <div>
+        <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
           {
           docSlots.length && docSlots.map((item,index) => (
             
-          <div key={index}>
+          <div onClick={()=> setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded cursor-pointer ${slotIndex === index ? "bg-blue-400 text-white" : "border border-gray-200"}`} key={index}>
             <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
             <p>{item[0] && item[0].datetime.getDate()}</p>
             
-
           </div>
-
           ))
         }  
         </div>
+        <div className='flex items-center gap-3 max-w-full overflow-x-auto mt-4 scrollbar-hide'>
+          {docSlots.length && docSlots[slotIndex].map((item, index)=>(
+            <p key={index} onClick={() => setTimeSlot(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === timeSlot ? "bg-blue-400 text-white" : "text-gray-400 border border-gray-300"}`}>
+              {item.time.toLowerCase()}
+            </p>
+          ))}
+        </div>
+        <button className='bg-blue-400 text-white text-sm font-light px-14 py-3 rounded-full my-6'>
+          Book Appointments
+        </button>
 
       </div>
+      {/* ----------------------------------Listing Related Doctores---------------- */}
+          <RelatedDoctors docId={docId} speciality={docInfo.speciality}/>
+
     </div>
   )
 }
